@@ -38,11 +38,39 @@ class School {
 	}
 
 	public void enroll(Student student) {
-		this.students.add(student);
+		if (!hasStudent(student))
+			this.students.add(student);
+	}
+
+	public boolean hasStudent(Student student) {
+		for (int i = 0; i < this.students.size(); i++)
+			if (this.students.get(i).equals(student))
+				return true;
+		return false;
 	}
 
 	public void addCourse(Course course) {
-		this.courses.add(course);
+		if (!hasCourse(course))
+			this.courses.add(course);
+	}
+
+	public void addCourse(String course) {
+		addCourse(new Course(course));
+	}
+
+	public Course findCourse(String name) throws Exception {
+		for (int i = 0; i < this.courses.size(); i++)
+			if (this.courses.get(i).toString().equals(name))
+				return this.courses.get(i);
+
+		throw new Exception("Could not find the course");
+	}
+
+	public boolean hasCourse(Course course) {
+		for (int i = 0; i < this.courses.size(); i++)
+			if (this.courses.get(i).equals(course))
+				return true;
+		return false;
 	}
 
 	public Student findBySurname(String surname) throws Exception {

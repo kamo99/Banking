@@ -27,6 +27,12 @@ class Student implements Comparable<Student> {
 		return this.ssn;
 	}
 
+	public boolean equals(Student other) {
+		return other.toString().equals(this.toString());
+	}
+
+	public ArrayList<Course> getCourses() {return courses;}
+
 	public Grade averageGrade() {
 		double total = 0;
 		for (Object attendedCourse : this.courses.toArray()) {

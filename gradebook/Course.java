@@ -35,6 +35,10 @@ class Course {
 		return total / this.students.size();
 	}
 
+	public boolean equals(Course other) {
+		return other.toString().equals(this.toString());
+	}
+
 	public String toString() {
 		return name;
 	}
