@@ -48,4 +48,9 @@ class SortAll {
 		}
 		return groups;
 	}
+
+	public static int totalDuplicates(ArrayList things) {
+		ArrayList<ArrayList> groups = groupDuplicates(things);
+		return things.size() - groups.size();
+	}
 }
