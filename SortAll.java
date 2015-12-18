@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 class SortAll {
 	// by default, it sorts least to greatest
 	// to make it greatest to least, pass in direction as a negative number
@@ -20,5 +22,30 @@ class SortAll {
 
 	public static Comparable[] bubble(Comparable[] comparables) {
 		return bubble(comparables, 1);
+	}
+
+	public static ArrayList<ArrayList> groupDuplicates(ArrayList original) {
+		ArrayList remaining = new ArrayList(original);
+		ArrayList<ArrayList> groups = new ArrayList();
+		while (remaining.size() > 0) {
+			ArrayList group = new ArrayList();
+			Object key = remaining.get(0);
+			ArrayList<Integer> used = new ArrayList<Integer>();
+
+			for (int i = 0; i < remaining.size(); i++) {
+				if (key.equals(remaining.get(i))) {
+					group.add(remaining.get(i));
+					used.add(i);
+				}
+			}
+			groups.add(group);
+
+			for (int i = 0; i < used.size() + 1; i++) {
+				try {
+					remaining.remove(key);
+				} catch (Exception error) {}
+			}
+		}
+		return groups;
 	}
 }
