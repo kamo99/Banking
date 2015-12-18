@@ -1,12 +1,22 @@
 import java.util.ArrayList;
 
 class School {
+	private final String name;
 	private ArrayList<Student> students;
 	ArrayList<Course> courses;
 
-	public School() {
-		this.students = new ArrayList<Student>();
-		this.courses = new ArrayList<Course>();
+	public School(String name, ArrayList<Student> students, ArrayList<Course> courses) {
+		this.name = name;
+		this.students = students;
+		this.courses = courses;
+	}
+
+	public School(String name, ArrayList<Student> students) {
+		this(name, students, new ArrayList<Course>());
+	}
+
+	public School(String name) {
+		this(name, new ArrayList<Student>());
 	}
 
 	public ArrayList<Student> students() {
@@ -18,6 +28,13 @@ class School {
 		for (int i = 0; i < students.size(); i++)
 			this.students.add((Student) (students.get(i)));
 		return this.students;
+	}
+
+	public Grade averageGrade() {
+		double total = 0;
+		for (int i = 0; i < this.students.size(); i++)
+			total += this.students.get(i).averageGrade().numeric;
+		return new Grade(total / this.students.size());
 	}
 
 	public void enroll(Student student) {
@@ -42,5 +59,24 @@ class School {
 				return students.get(i);
 
 		throw new Exception("No student found with SSN " + ssn);
+	}
+
+	public ArrayList<Student> studentsInGrade(int grade) {
+		final ArrayList<Student> students = new ArrayList<Student>();
+		for (int i = 0; i < this.students.size(); i++)
+			if (this.students.get(i).getGrade() == grade)
+				students.add(this.students.get(i));
+		return students;
+	}
+
+	public int totalFailing() {
+		int total = 0;
+		for (int i = 0; i < this.students.size(); i++)
+			total += this.students.get(i).averageGrade().isFailing() ? 1 : 0;
+		return total;
+	}
+
+	public String toString() {
+		return this.name;
 	}
 }

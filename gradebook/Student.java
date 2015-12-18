@@ -27,7 +27,7 @@ class Student implements Comparable<Student> {
 		return this.ssn;
 	}
 
-	public double averageGrade() {
+	public Grade averageGrade() {
 		double total = 0;
 		for (Object attendedCourse : this.courses.toArray()) {
 			try {
@@ -36,11 +36,13 @@ class Student implements Comparable<Student> {
 				System.out.println("THIS SHOULD NEVER HAPPEN");
 			}
 		}
-		return total / this.courses.size();
+		return new Grade(total / this.courses.size());
 	}
 
+	public int getGrade() {return grade;}
+
 	public int compareTo(Student other) {
-		return (int) ((other).averageGrade() - this.averageGrade());
+		return (int) ((other).averageGrade().numeric - this.averageGrade().numeric);
 	}
 
 	public String toString() {
