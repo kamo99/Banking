@@ -1,5 +1,4 @@
 import java.util.HashMap;
-import java.util.Calendar;
 
 class Course {
 	private String name;
