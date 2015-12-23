@@ -1,6 +1,7 @@
 class Robot {
 	private double deltaX = 0, deltaY = 0;
 	private Motor[] motors;
+	private static int lateralSpeed = 30; // cm/millisecond moved at the top speed laterally
 
 	// motor index => posiiton
 	// 0 => front left
@@ -43,14 +44,12 @@ class Robot {
 	}
 
 	public void right(int duration) throws Exception {
-		final int speed = 30; // cm/millisecond moved at the top speed
-
 		this.motors[0].setSpeed(-100);
 		this.motors[1].setSpeed(-100);
 		this.motors[2].setSpeed(100);
 		this.motors[3].setSpeed(100);
 
-		this.deltaX += duration * speed;
+		this.deltaX += duration * lateralSpeed;
 
 		Thread.sleep(duration);
 
@@ -58,14 +57,12 @@ class Robot {
 	}
 
 	public void left(int duration) throws Exception {
-		final int speed = 3; // cm/millisecond moved at the top speed
-
 		this.motors[0].setSpeed(100);
 		this.motors[1].setSpeed(100);
 		this.motors[2].setSpeed(-100);
 		this.motors[3].setSpeed(-100);
 
-		this.deltaX -= duration * speed;
+		this.deltaX -= duration * lateralSpeed;
 
 		Thread.sleep(duration);
 
