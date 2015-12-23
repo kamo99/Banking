@@ -24,6 +24,16 @@ class SortAll {
 		return bubble(comparables, 1);
 	}
 
+	public static ArrayList<Comparable> bubble(ArrayList<Comparable> comparables) {
+		Comparable[] comparableArray = new Comparable[comparables.size()];
+		comparableArray = comparables.toArray(comparableArray);
+		bubble(comparableArray);
+		comparables = new ArrayList<Comparable>();
+		for (Comparable comparable : comparableArray)
+			comparables.add(comparable);
+		return comparables;
+	}
+
 	public static ArrayList<ArrayList> groupDuplicates(ArrayList original) {
 		ArrayList remaining = new ArrayList(original);
 		ArrayList<ArrayList> groups = new ArrayList();
